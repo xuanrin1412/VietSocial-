@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* hover sidebar  */
+.hoverSidebar{
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    margin: 8px 0;
+    height: 56px;
+}
+.hoverSidebar:hover{
+    background-color: rgba(41, 41, 41, 0.5);
+    border-radius: 10px;
+}
+
+/* INSTAGRAM COLOR  */
+.igColor{
+   background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+}
+
