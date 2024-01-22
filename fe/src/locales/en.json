@@ -1,7 +1,14 @@
 {
-    "homePage": "Home page",
+    "homePage": "Home",
     "search": "Search",
-    "createAnArticle": "Create an article",
+    "createAnArticle": "Create",
     "profile": "Profile",
-    "logOut": "Log out"
+    "logOut": "Log out",
+    "logIn": "Log in",
+    "register": "Register",
+    "createAt": "Create at",
+    "likes":"likes",
+    "addAComment": "Add a comment...",
+    "seeAll" : "See all",
+    "comments": "comments ."
 }

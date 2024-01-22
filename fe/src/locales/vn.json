@@ -1,7 +1,14 @@
 {
     "homePage": "Trang chủ",
     "search": "Tìm kiếm",
-    "createAnArticle": "Tạo bài viết",
+    "createAnArticle": "Tạo",
     "profile": "Trang cá nhân",
-    "logOut": "Đăng xuất"
+    "logOut": "Đăng xuất",
+    "logIn": "Đăng nhập",
+    "register": "Đăng kí",
+    "createAt": "Đăng vào ",
+    "likes":"lượt thích",
+    "addAComment": "Thêm bình luận...",
+    "seeAll" : "Xem tất cả ",
+    "comments": "bình luận ."
 }
