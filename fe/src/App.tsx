@@ -3,14 +3,17 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { useEffect } from "react";
+import { navigationKey } from "./contant/navigate";
 function App() {
+    useEffect(() => {}, []);
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+                <Route path={navigationKey.home} element={<Home />} />
+                <Route path={navigationKey.profile} element={<Profile />} />
+                <Route path={navigationKey.login} element={<Login />} />
+                <Route path={navigationKey.register} element={<Register />} />
             </Routes>
         </Router>
     );

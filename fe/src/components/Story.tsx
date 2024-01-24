@@ -1,131 +1,74 @@
+import { useRef, useState } from "react";
+import storyData from "../FakeData/storyData";
+import { FaCircleChevronLeft } from "react-icons/fa6";
+import { FaCircleChevronRight } from "react-icons/fa6";
+
 export default function Story() {
+    const [scrollPosition, setScrollPosition] = useState<number>(0);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [maxScroll, setMaxScroll] = useState<number>(0);
+
+    const handleScroll = (direction: "left" | "right") => {
+        const container = scrollContainerRef.current;
+        const scrollAmount = 330;
+        if (container) {
+            if (direction === "right") {
+                container.scrollLeft += scrollAmount;
+            } else if (direction === "left") {
+                container.scrollLeft -= scrollAmount;
+            }
+            setScrollPosition(container.scrollLeft);
+            setMaxScroll(container.scrollWidth - container.clientWidth);
+        }
+    };
     return (
-        <div className=" h-[130px] mb-5  w-full  overflow-hidden flex items-center pl-4  space-x-4">
-            <div className="space-y-2">
-                <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                    <div className="h-[70px] w-[70px] p-[3px]  ">
-                        <img
-                            className="h-full w-full rounded-full border-[2.5px] border-black"
-                            src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t39.30808-6/279054327_660144745078513_596882133879240517_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeERMwr-uTDImtvfcrcSVH83WF7suV3-Ph9YXuy5Xf4-H7qrvYAoJzyMFHdd0jGWE6Gvdw87ISNMCXnOcgi0xrgp&_nc_ohc=BOvM0-Q5fwQAX--oI7M&_nc_ht=scontent.fsgn5-3.fna&oh=00_AfDtAF4Rnh8OcpCN2v9NKROelaIwq-2FJfEfy4Srfcc8Lw&oe=65B23AF1"
-                            alt=""
-                        />
+        <div className="h-[130px] mb-5  w-full no-scrollbar overflow-x-scroll  flex items-center ">
+            <div
+                ref={scrollContainerRef}
+                className="no-scrollbar overflow-x-scroll flex items-center scroll-smooth"
+                onScroll={() => {
+                    if (scrollContainerRef.current) {
+                        setScrollPosition(
+                            scrollContainerRef.current.scrollLeft
+                        );
+                    }
+                }}
+            >
+                {storyData.map((data, index) => (
+                    <div
+                        key={index}
+                        className="space-y-2 px-[8.5px] cursor-pointer"
+                    >
+                        <div className=" bg-gradient-to-r rounded-full from-purple-500 to-pink-500">
+                            <div className="h-[67px] w-[67px] p-[2px] ">
+                                <img
+                                    className="h-full w-full object-cover rounded-full border-[2.5px] border-black"
+                                    src={data.imgUrl}
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                        <p className="text-center text-[15px] w-[67px] h-[25px] text-ellipsis overflow-hidden">
+                            {data.name}
+                        </p>
                     </div>
-                </div>
-                <p className="text-center w-[70px] h-[25px] text-ellipsis overflow-hidden">
-                    sowri le thi
-                </p>
+                ))}
             </div>
-            <div className="space-y-2">
-                <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 ">
-                    <div className="h-[70px] w-[70px] p-[3px]  ">
-                        <img
-                            className="h-full w-full rounded-full border-[2.5px] border-black"
-                            src="https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/279235561_657932951966359_3526617033743877937_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=dd5e9f&_nc_eui2=AeG6MhBYAbqp-pzdsGpWFlci-EupDdCC13X4S6kN0ILXderCuon5W0ZBPkKEPeaS1DE_WPyanjoGzhoT3mz8Gzat&_nc_ohc=QD2692a6cskAX9wv8lQ&_nc_ht=scontent.fsgn5-11.fna&oh=00_AfA7CMSnuiZxETov87o1yfha85dnypFrr_JxsDAJfPt1Lw&oe=65B231FF"
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <p className="text-center w-[70px] h-[25px] text-ellipsis overflow-hidden">
-                    sowri le thi
-                </p>
-            </div>
-            <div className="space-y-2">
-                <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                    <div className="h-[70px] w-[70px] p-[3px]  ">
-                        <img
-                            className="h-full w-full rounded-full border-[2.5px] border-black"
-                            src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/273725517_612240389868949_2939115832801018432_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9c7eae&_nc_eui2=AeFxsIwNqs6bBqVMUlRJAZjiyOG06KUjvjPI4bTopSO-M9Vg72lXnr1z4s3XpqMK1cMdFYLE-MEsw6hgMb-bBEaS&_nc_ohc=o6G38zNjpc4AX98GEZz&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfCE7zdQDMskxY9uMtDh5gyfvzGeuPMCpnJNDKYofuowlw&oe=65B12492"
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <p className="text-center w-[70px] h-[25px] text-ellipsis overflow-hidden">
-                    sowri le thi
-                </p>
-            </div>
-            <div className="space-y-2">
-                <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                    <div className="h-[70px] w-[70px] p-[3px]  ">
-                        <img
-                            className="h-full w-full rounded-full border-[2.5px] border-black"
-                            src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/273725517_612240389868949_2939115832801018432_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9c7eae&_nc_eui2=AeFxsIwNqs6bBqVMUlRJAZjiyOG06KUjvjPI4bTopSO-M9Vg72lXnr1z4s3XpqMK1cMdFYLE-MEsw6hgMb-bBEaS&_nc_ohc=o6G38zNjpc4AX98GEZz&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfCE7zdQDMskxY9uMtDh5gyfvzGeuPMCpnJNDKYofuowlw&oe=65B12492"
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <p className="text-center w-[70px] h-[25px] text-ellipsis overflow-hidden">
-                    sowri le thi
-                </p>
-            </div>
-            <div className="space-y-2">
-                <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                    <div className="h-[70px] w-[70px] p-[3px]  ">
-                        <img
-                            className="h-full w-full rounded-full border-[2.5px] border-black"
-                            src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/273725517_612240389868949_2939115832801018432_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9c7eae&_nc_eui2=AeFxsIwNqs6bBqVMUlRJAZjiyOG06KUjvjPI4bTopSO-M9Vg72lXnr1z4s3XpqMK1cMdFYLE-MEsw6hgMb-bBEaS&_nc_ohc=o6G38zNjpc4AX98GEZz&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfCE7zdQDMskxY9uMtDh5gyfvzGeuPMCpnJNDKYofuowlw&oe=65B12492"
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <p className="text-center w-[70px] h-[25px] text-ellipsis overflow-hidden">
-                    sowri le thi
-                </p>
-            </div>
-            <div className="space-y-2">
-                <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                    <div className="h-[70px] w-[70px] p-[3px]  ">
-                        <img
-                            className="h-full w-full rounded-full border-[2.5px] border-black"
-                            src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/273725517_612240389868949_2939115832801018432_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9c7eae&_nc_eui2=AeFxsIwNqs6bBqVMUlRJAZjiyOG06KUjvjPI4bTopSO-M9Vg72lXnr1z4s3XpqMK1cMdFYLE-MEsw6hgMb-bBEaS&_nc_ohc=o6G38zNjpc4AX98GEZz&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfCE7zdQDMskxY9uMtDh5gyfvzGeuPMCpnJNDKYofuowlw&oe=65B12492"
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <p className="text-center w-[70px] h-[25px] text-ellipsis overflow-hidden">
-                    sowri le thi
-                </p>
-            </div>
-            <div className="space-y-2">
-                <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                    <div className="h-[70px] w-[70px] p-[3px]  ">
-                        <img
-                            className="h-full w-full rounded-full border-[2.5px] border-black"
-                            src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/273725517_612240389868949_2939115832801018432_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9c7eae&_nc_eui2=AeFxsIwNqs6bBqVMUlRJAZjiyOG06KUjvjPI4bTopSO-M9Vg72lXnr1z4s3XpqMK1cMdFYLE-MEsw6hgMb-bBEaS&_nc_ohc=o6G38zNjpc4AX98GEZz&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfCE7zdQDMskxY9uMtDh5gyfvzGeuPMCpnJNDKYofuowlw&oe=65B12492"
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <p className="text-center w-[70px] h-[25px] text-ellipsis overflow-hidden">
-                    sowri le thi
-                </p>
-            </div>
-            <div className="space-y-2">
-                <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                    <div className="h-[70px] w-[70px] p-[3px]  ">
-                        <img
-                            className="h-full w-full rounded-full border-[2.5px] border-black"
-                            src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/273725517_612240389868949_2939115832801018432_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9c7eae&_nc_eui2=AeFxsIwNqs6bBqVMUlRJAZjiyOG06KUjvjPI4bTopSO-M9Vg72lXnr1z4s3XpqMK1cMdFYLE-MEsw6hgMb-bBEaS&_nc_ohc=o6G38zNjpc4AX98GEZz&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfCE7zdQDMskxY9uMtDh5gyfvzGeuPMCpnJNDKYofuowlw&oe=65B12492"
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <p className="text-center w-[70px] h-[25px] text-ellipsis overflow-hidden">
-                    sowri le thi
-                </p>
-            </div>
-            <div className="space-y-2">
-                <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                    <div className="h-[70px] w-[70px] p-[3px]  ">
-                        <img
-                            className="h-full w-full rounded-full border-[2.5px] border-black"
-                            src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/273725517_612240389868949_2939115832801018432_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9c7eae&_nc_eui2=AeFxsIwNqs6bBqVMUlRJAZjiyOG06KUjvjPI4bTopSO-M9Vg72lXnr1z4s3XpqMK1cMdFYLE-MEsw6hgMb-bBEaS&_nc_ohc=o6G38zNjpc4AX98GEZz&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfCE7zdQDMskxY9uMtDh5gyfvzGeuPMCpnJNDKYofuowlw&oe=65B12492"
-                            alt=""
-                        />
-                    </div>
-                </div>
-                <p className="text-center w-[70px] h-[25px] text-ellipsis overflow-hidden">
-                    sowri le thi
-                </p>
+            <div className=" pl-4 absolute  top-10 left-0 w-[649px]  flex justify-between flex-end ">
+                {scrollPosition == 0 ? (
+                    <span></span>
+                ) : (
+                    <span onClick={() => handleScroll("left")}>
+                        <FaCircleChevronLeft className="h-5 w-5 opacity-90" />
+                    </span>
+                )}
+                {scrollPosition >= 1 && scrollPosition == maxScroll ? (
+                    <span></span>
+                ) : (
+                    <span onClick={() => handleScroll("right")}>
+                        <FaCircleChevronRight className="h-5 w-5 opacity-90" />
+                    </span>
+                )}
             </div>
         </div>
     );
